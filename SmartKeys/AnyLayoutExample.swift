@@ -9,10 +9,10 @@ import SwiftUI
 
 struct AnyLayoutExample: View {
 
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.verticalSizeClass) var verticalSizeClass
 
     var body: some View {
-        let layout = horizontalSizeClass == .compact ? AnyLayout(VStackLayout()) : AnyLayout(HStackLayout()) 
+        let layout = verticalSizeClass == .regular ? AnyLayout(VStackLayout()) : AnyLayout(HStackLayout()) 
 
         layout {
             Image(systemName: "1.circle")

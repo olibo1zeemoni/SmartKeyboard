@@ -24,8 +24,6 @@ class KeyboardViewController: UIInputViewController {
         super.viewDidLoad()
         
         
-        
-        // Perform custom UI setup here
         self.nextKeyboardButton = UIButton(type: .system)
         
         self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), for: [])
@@ -51,7 +49,7 @@ class KeyboardViewController: UIInputViewController {
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             //hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            //hostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            //hostingController.view.bottomAnchor.constraint(equalTo: nextKeyboardButton.topAnchor),
             //hostingController.view.topAnchor.constraint(equalTo: view.topAnchor) ,
             hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -60,9 +58,6 @@ class KeyboardViewController: UIInputViewController {
         ])
         
         hostingController.didMove(toParent: self)
-        
-
-        
         
         
     }
