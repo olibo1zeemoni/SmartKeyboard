@@ -15,10 +15,10 @@ struct KeyboardView: View {
         ["z", "x", "c", "v", "b", "n", "m"]
     ]
     
+    var action: () -> Void
     @Environment(\.verticalSizeClass) var verticalSizeClass
     //@Environment(\.textDocumentProxy) var textDocumentProxy
 
-    @EnvironmentObject var keyboardController: KeyboardController
     
     
     @ViewBuilder
@@ -32,13 +32,13 @@ struct KeyboardView: View {
                         HStack(alignment: .center, spacing: 5) {
                             
                             ForEach(rows[0], id: \.self) { column in
-                                ButtonView(character: column.uppercased(), action: {})
+                                ButtonView(character: column.uppercased(), action: action)
                             }
                         }
                         HStack(alignment: .center, spacing: 5) {
                             Spacer(minLength: 12)
                             ForEach(rows[1], id: \.self) { column in
-                                ButtonView(character: column.uppercased(), action: {})
+                                ButtonView(character: column.uppercased(), action: action)
                             }
                             Spacer(minLength: 12)
                             
@@ -58,10 +58,10 @@ struct KeyboardView: View {
                             }
                             Spacer()
                             ForEach(rows[2], id: \.self) { column in
-                                ButtonView(character: column.uppercased(), action: {})
+                                ButtonView(character: column.uppercased(), action: action)
                             }
                             Spacer()
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                            Button(action: {}) {
                                 ZStack {
                                     Color.buttonBackground
                                     Image(systemName: "delete.left")
@@ -77,15 +77,23 @@ struct KeyboardView: View {
                         Group {
                             GeometryReader { proxy in
                                 HStackLayout(alignment: .center, spacing: 5){
-                                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                                    Button(action: {}) {
                                         ZStack {
                                             Color.buttonBackground
                                             Image(systemName: "textformat.123")
                                         }
-                                        .frame(maxWidth: proxy.size.width * 0.2)
+                                        .frame(maxWidth: proxy.size.width * 0.12)
                                         .clipShape(RoundedRectangle(cornerRadius: 5))
                                     }
-                                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                                    Button(action: {}) {
+                                        ZStack {
+                                            Color.buttonBackground
+                                            Image(systemName: "globe")
+                                        }
+                                        .frame(maxWidth: proxy.size.width * 0.12)
+                                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    }
+                                    Button(action: {}) {
                                         ZStack {
                                             Color.buttonBackground
                                             Text("space")
@@ -124,11 +132,11 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    KeyboardView()
+    KeyboardView(action: {})
 }
 
 
-class KeyboardController: ObservableObject {
+class KeyboardController1: ObservableObject {
     weak var viewController: UIInputViewController?
     
     func switchToNextKeyboard() {

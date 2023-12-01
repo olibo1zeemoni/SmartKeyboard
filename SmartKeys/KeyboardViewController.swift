@@ -11,7 +11,7 @@ import SwiftUI
 class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
-    let swiftUIView = KeyboardView()
+    //let swiftUIView = KeyboardView()
     
     
     override func updateViewConstraints() {
@@ -36,12 +36,10 @@ class KeyboardViewController: UIInputViewController {
         
         self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        //createButton(title: "\u{200E}Hello\u{200F}")
 
-        
+       /*
         let hostingController = UIHostingController(rootView: swiftUIView)
         //hostingController.sizingOptions = .preferredContentSize
-        
         self.addChild(hostingController)
 
         
@@ -57,8 +55,9 @@ class KeyboardViewController: UIInputViewController {
             hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-        hostingController.didMove(toParent: self)
-        
+//        hostingController.didMove(toParent: self) */
+        self.inputView = MyInputView(frame: .zero, inputViewStyle: .default, action: { self.handleInput() })
+
         
     }
     
@@ -74,36 +73,26 @@ class KeyboardViewController: UIInputViewController {
     override func textDidChange(_ textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
         
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
-            textColor = UIColor.white
-        } else {
-            textColor = UIColor.black
-        }
-        self.nextKeyboardButton.setTitleColor(textColor, for: [])
-    }
-    
-    func createButton(title: String){
-        let button = UIButton(type: .system)
-        button.setTitle(title, for: .normal)
-        button.sizeToFit()
-        //button.translatesAutoresizingMaskIntoConstraints = false
-        
-        button.addTarget(self, action: #selector(handleInput(sender:)), for: .touchUpInside)
-        
-        self.view.addSubview(button)
-        
-        button.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+//        var textColor: UIColor
+//        let proxy = self.textDocumentProxy
+//        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
+//            textColor = UIColor.white
+//        } else {
+//            textColor = UIColor.black
+//        }
+//        self.nextKeyboardButton.setTitleColor(textColor, for: [])
     }
     
     
-    @objc func handleInput(sender: UIButton){
+    
+    @objc func handleInput(/*sender: UIButton*/){
         let proxy = self.textDocumentProxy
         
-        proxy.insertText(sender.title(for: .normal) ?? "")
+       // proxy.insertText(sender.title(for: .normal) ?? "")
         //proxy.insertText(String(rotateText()))
+        //right to left override "\u{}
+        
+        proxy.insertText("\u{202E}Hello")
     }
     
     
@@ -123,34 +112,18 @@ class KeyboardViewController: UIInputViewController {
         return "\u{200F}\u{004B}"
     }
     
-    func createButtons(from characters: [String]) -> [UIButton] {
-        // Create an empty array of buttons
-        var buttons = [UIButton]()
-        // Loop over the characters
-        for character in characters {
-            // Create a button with the character as the title
-            let button = UIButton(type: .system)
-            button.setTitle(character, for: .normal)
-            // Customize the button appearance
-            button.backgroundColor = .white
-            button.setTitleColor(.black, for: .normal)
-            button.layer.cornerRadius = 5
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.gray.cgColor
-            // Add the button to the array
-            buttons.append(button)
+    func flipText(_ text: String) -> String {
+        var flippedText = ""
+        
+        for char in text {
+            // If the character exists in the dictionary, use its upside-down counterpart; otherwise, keep the character unchanged
+            flippedText += MainDictionary[char] ?? String(char)
         }
-        // Return the array of buttons
-        return buttons
+        
+        return String(flippedText.reversed())  // Reverse the text to flip it upside down
     }
     
-    func keys(_ someEnum: KeysInput) -> [String] {
-        var output = [String]()
-        for element in  KeysInput.allCases {
-            output.append("\(element)")
-        }
-        return output
-    }
+
     
    
 }
@@ -158,17 +131,58 @@ class KeyboardViewController: UIInputViewController {
 
 
 
-struct KeyboardViewControllerPreview: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> KeyboardViewController {
-        // Instantiate your KeyboardViewController here
-        return KeyboardViewController()
-    }
+//struct KeyboardViewControllerPreview: UIViewControllerRepresentable {
+//    func makeUIViewController(context: Context) -> KeyboardViewController {
+//        // Instantiate your KeyboardViewController here
+//        return KeyboardViewController()
+//    }
+//
+//    func updateUIViewController(_ uiViewController: KeyboardViewController, context: Context) {
+//        // Update your view controller here
+//        
+//    }
+//}
 
-    func updateUIViewController(_ uiViewController: KeyboardViewController, context: Context) {
-        // Update your view controller here
+
+
+class MyInputView: UIInputView {
+    // Override the init method
+    
+     init(frame: CGRect, inputViewStyle: UIInputView.Style, action: @escaping () -> Void) {
+        // Call the super init method
+        
+        
+        super.init(frame: frame, inputViewStyle: inputViewStyle )
+        // Add any subviews or customizations you want
+        let swiftUIView = KeyboardView(action: { action() })
+        //self.action = action
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        hostingController.sizingOptions = .preferredContentSize
+        
+        addSubview(hostingController.view)
+
+        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+
+            hostingController.view.centerXAnchor.constraint(equalTo: centerXAnchor),
+            hostingController.view.centerYAnchor.constraint(equalTo: centerYAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: trailingAnchor),
+        ])
         
     }
+    
+    // Required init method
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Define an action for the button
+    @objc func buttonTapped() {
+        // Get the text document proxy from the input view controller
+        
+        guard let proxy = inputViewController?.textDocumentProxy else { return }
+        // Insert some text at the insertion point
+        proxy.insertText("Hello, world!")
+    }
 }
-
-
-
