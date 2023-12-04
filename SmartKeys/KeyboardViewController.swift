@@ -9,9 +9,6 @@ import UIKit
 import SwiftUI
 
 class KeyboardViewController: UIInputViewController {
-
-    @IBOutlet var nextKeyboardButton: UIButton!
-    //let swiftUIView = KeyboardView()
     
     
     override func updateViewConstraints() {
@@ -22,21 +19,7 @@ class KeyboardViewController: UIInputViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        self.nextKeyboardButton = UIButton(type: .system)
-        
-        self.nextKeyboardButton.setTitle(NSLocalizedString("Next Keyboard", comment: "Title for 'Next Keyboard' button"), for: [])
-        self.nextKeyboardButton.sizeToFit()
-        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        
-        self.view.addSubview(self.nextKeyboardButton)
-        
-        self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-
+       
        /*
         let hostingController = UIHostingController(rootView: swiftUIView)
         //hostingController.sizingOptions = .preferredContentSize
@@ -56,18 +39,27 @@ class KeyboardViewController: UIInputViewController {
         ])
         
 //        hostingController.didMove(toParent: self) */
-        self.inputView = MyInputView(frame: .zero, inputViewStyle: .default, action: { self.handleInput() })
+        self.inputView = MyInputView(frame: .zero, inputViewStyle: .default, action: { self.handleInput() }, nextKeyboardAction: advanceToNextInputMode, showNextButton:  !self.needsInputModeSwitchKey)
 
         
     }
     
+    func newClosure() {
+        //var allTouchEvents = UIEvent().allTouches
+        //handleInputModeList(from: self.view, with: UIPressesEvent())
+        
+        advanceToNextInputMode()
+    }
+    
     override func viewWillLayoutSubviews() {
-        self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
+       // self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
         super.viewWillLayoutSubviews()
     }
     
     override func textWillChange(_ textInput: UITextInput?) {
         // The app is about to change the document's contents. Perform any preparation here.
+        let keyBoardType = textDocumentProxy.keyboardType
+
     }
     
     override func textDidChange(_ textInput: UITextInput?) {
@@ -91,6 +83,7 @@ class KeyboardViewController: UIInputViewController {
        // proxy.insertText(sender.title(for: .normal) ?? "")
         //proxy.insertText(String(rotateText()))
         //right to left override "\u{}
+        
         
         proxy.insertText("\u{202E}Hello")
     }
@@ -148,16 +141,16 @@ class KeyboardViewController: UIInputViewController {
 class MyInputView: UIInputView {
     // Override the init method
     
-     init(frame: CGRect, inputViewStyle: UIInputView.Style, action: @escaping () -> Void) {
+    init(frame: CGRect, inputViewStyle: UIInputView.Style, action: @escaping () -> Void, nextKeyboardAction: @escaping () -> Void, showNextButton: Bool) {
         // Call the super init method
         
         
         super.init(frame: frame, inputViewStyle: inputViewStyle )
         // Add any subviews or customizations you want
-        let swiftUIView = KeyboardView(action: { action() })
+        let swiftUIView = KeyboardView(showNextButton: showNextButton, action: { action() }, nextKeyBoardAction: nextKeyboardAction)
         //self.action = action
         let hostingController = UIHostingController(rootView: swiftUIView)
-        hostingController.sizingOptions = .preferredContentSize
+        //hostingController.sizingOptions = .preferredContentSize
         
         addSubview(hostingController.view)
 

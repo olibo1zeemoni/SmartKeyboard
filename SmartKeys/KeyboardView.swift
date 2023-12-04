@@ -15,7 +15,9 @@ struct KeyboardView: View {
         ["z", "x", "c", "v", "b", "n", "m"]
     ]
     
+    @State var showNextButton: Bool = false
     var action: () -> Void
+    var nextKeyBoardAction: () -> Void
     @Environment(\.verticalSizeClass) var verticalSizeClass
     //@Environment(\.textDocumentProxy) var textDocumentProxy
 
@@ -85,13 +87,15 @@ struct KeyboardView: View {
                                         .frame(maxWidth: proxy.size.width * 0.12)
                                         .clipShape(RoundedRectangle(cornerRadius: 5))
                                     }
-                                    Button(action: {}) {
-                                        ZStack {
-                                            Color.buttonBackground
-                                            Image(systemName: "globe")
+                                    if showNextButton {
+                                        Button(action: {nextKeyBoardAction()}) {
+                                            ZStack {
+                                                Color.buttonBackground
+                                                Image(systemName: "globe")
+                                            }
+                                            .frame(maxWidth: proxy.size.width * 0.12)
+                                            .clipShape(RoundedRectangle(cornerRadius: 5))
                                         }
-                                        .frame(maxWidth: proxy.size.width * 0.12)
-                                        .clipShape(RoundedRectangle(cornerRadius: 5))
                                     }
                                     Button(action: {}) {
                                         ZStack {
@@ -132,7 +136,7 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    KeyboardView(action: {})
+    KeyboardView(action: {}, nextKeyBoardAction: { })
 }
 
 
