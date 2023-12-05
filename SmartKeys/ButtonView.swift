@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ButtonView: View {
-    let character: String
+    let character: Char
     let action: () -> Void
     //@Environment(\.verticalSizeClass) var verticalSizeClass
 
@@ -19,7 +19,7 @@ struct ButtonView: View {
             ZStack{
                 RoundedRectangle(cornerRadius: 5)
                     .fill(.buttonBackground)
-                Text(NSLocalizedString(character, comment: "letter \(character)"))
+                Text(NSLocalizedString(character.name, comment: "letter \(character.name)"))
                     .font(.system(size: 25, weight: .light, design: .rounded))
                     .foregroundColor(Color.foreGround)
                     .background(Color.buttonBackground)
@@ -29,5 +29,5 @@ struct ButtonView: View {
 }
 
 #Preview {
-    ButtonView(character: "K", action: {})
+    ButtonView(character: Char(name: "K", type: .alphabet, isAphanumeric: true), action: { })
 }

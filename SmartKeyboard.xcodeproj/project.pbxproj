@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		F51C732F2B1E39AA00C033CC /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C732E2B1E39AA00C033CC /* ButtonType.swift */; };
+		F51C73302B1E3BD900C033CC /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C732E2B1E39AA00C033CC /* ButtonType.swift */; };
+		F51C73322B1EC9DC00C033CC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C73312B1EC9DC00C033CC /* Character.swift */; };
+		F51C73332B1EC9DC00C033CC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C73312B1EC9DC00C033CC /* Character.swift */; };
 		F5E154242B1702C60053571C /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E154232B1702C60053571C /* KeyboardController.swift */; };
 		F5F253AB2B1060F80088932E /* SmartKeyboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F253AA2B1060F80088932E /* SmartKeyboardApp.swift */; };
 		F5F253AD2B1060F80088932E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F253AC2B1060F80088932E /* ContentView.swift */; };
@@ -56,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		F51C732E2B1E39AA00C033CC /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
+		F51C73312B1EC9DC00C033CC /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		F5E154232B1702C60053571C /* KeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
 		F5F253A72B1060F80088932E /* SmartKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F253AA2B1060F80088932E /* SmartKeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartKeyboardApp.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			children = (
 				F5F253BE2B1061D60088932E /* KeyboardViewController.swift */,
 				F5F253FB2B15B9CB0088932E /* KeyboardView.swift */,
+				F51C73312B1EC9DC00C033CC /* Character.swift */,
 				F51C732E2B1E39AA00C033CC /* ButtonType.swift */,
 				F5F253F72B15B0850088932E /* ButtonView.swift */,
 				F5F254032B15E3BB0088932E /* DemoView.swift */,
@@ -251,11 +256,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5F253AD2B1060F80088932E /* ContentView.swift in Sources */,
+				F51C73302B1E3BD900C033CC /* ButtonType.swift in Sources */,
 				F5F253AB2B1060F80088932E /* SmartKeyboardApp.swift in Sources */,
 				F5F253F92B15B0AD0088932E /* ButtonView.swift in Sources */,
 				F5F2540A2B16484A0088932E /* AnyLayoutExample.swift in Sources */,
 				F5F253FC2B15B9CB0088932E /* KeyboardView.swift in Sources */,
 				F5F253E22B1473D10088932E /* KeysInput.swift in Sources */,
+				F51C73322B1EC9DC00C033CC /* Character.swift in Sources */,
 				F5F253CD2B10689E0088932E /* MyCustomToolbar.swift in Sources */,
 				F5F254042B15E3BB0088932E /* DemoView.swift in Sources */,
 			);
@@ -272,6 +279,7 @@
 				F5F253CC2B10684B0088932E /* MyCustomToolbar.swift in Sources */,
 				F5F253F82B15B0850088932E /* ButtonView.swift in Sources */,
 				F5F253FD2B15B9CB0088932E /* KeyboardView.swift in Sources */,
+				F51C73332B1EC9DC00C033CC /* Character.swift in Sources */,
 				F5F2540B2B16484A0088932E /* AnyLayoutExample.swift in Sources */,
 				F5F253BF2B1061D60088932E /* KeyboardViewController.swift in Sources */,
 			);

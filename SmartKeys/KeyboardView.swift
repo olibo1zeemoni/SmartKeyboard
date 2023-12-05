@@ -19,8 +19,8 @@ struct KeyboardView: View {
     var action: () -> Void
     var nextKeyBoardAction: () -> Void
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    //@Environment(\.textDocumentProxy) var textDocumentProxy
-
+    
+    
     
     
     @ViewBuilder
@@ -34,19 +34,19 @@ struct KeyboardView: View {
                         HStack(alignment: .center, spacing: 5) {
                             
                             ForEach(rows[0], id: \.self) { column in
-                                ButtonView(character: column.uppercased(), action: action)
+                                ButtonView(character: Char(name: column, type: .alphabet, isAphanumeric: true), action: action)
                             }
                         }
                         HStack(alignment: .center, spacing: 5) {
                             Spacer(minLength: 12)
                             ForEach(rows[1], id: \.self) { column in
-                                ButtonView(character: column.uppercased(), action: action)
+                                ButtonView(character: Char(name: column, type: .alphabet, isAphanumeric: true), action: action)
                             }
                             Spacer(minLength: 12)
                             
                         }
                         HStack(alignment: .center, spacing: 5) {
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                            Button(action: action) {
                                 ZStack {
                                     Color.buttonBackground
                                     Image(systemName: "shift.fill")
@@ -60,10 +60,10 @@ struct KeyboardView: View {
                             }
                             Spacer()
                             ForEach(rows[2], id: \.self) { column in
-                                ButtonView(character: column.uppercased(), action: action)
+                                ButtonView(character: Char(name: column, type: .alphabet, isAphanumeric: true), action: action)
                             }
                             Spacer()
-                            Button(action: {}) {
+                            Button(action: action) {
                                 ZStack {
                                     Color.buttonBackground
                                     Image(systemName: "delete.left")
@@ -79,7 +79,7 @@ struct KeyboardView: View {
                         Group {
                             GeometryReader { proxy in
                                 HStackLayout(alignment: .center, spacing: 5){
-                                    Button(action: {}) {
+                                    Button(action: action) {
                                         ZStack {
                                             Color.buttonBackground
                                             Image(systemName: "textformat.123")
@@ -97,14 +97,14 @@ struct KeyboardView: View {
                                             .clipShape(RoundedRectangle(cornerRadius: 5))
                                         }
                                     }
-                                    Button(action: {}) {
+                                    Button(action: action) {
                                         ZStack {
                                             Color.buttonBackground
                                             Text("space")
                                         }
                                         .clipShape(RoundedRectangle(cornerRadius: 5))
                                     }
-                                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                                    Button(action: action) {
                                         ZStack {
                                             Color.buttonBackground
                                             Text("return")
@@ -131,12 +131,25 @@ struct KeyboardView: View {
                             .frame(height: 2)
                     }
                
-       // }
     }
+    
+    var inputKeys: [[Char]] {
+        var array: [[Char]] = []
+        var temp: [Char] = []
+        for row in rows {
+            for column in row {
+                let char = Char(name: column, type: .alphabet, isAphanumeric: false)
+                temp.append(char)
+            }
+            array.append(temp)
+        }
+        return array
+    }
+    
 }
 
 #Preview {
-    KeyboardView(action: {}, nextKeyBoardAction: { })
+    KeyboardView(action: { }, nextKeyBoardAction: { })
 }
 
 

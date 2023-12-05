@@ -8,7 +8,7 @@
 import Foundation
 
 enum ButtonType: Hashable, Codable {
-    case alphabet(String)
+    case alphabet
     case space
     case shift
     case delete

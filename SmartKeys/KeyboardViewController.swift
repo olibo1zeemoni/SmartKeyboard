@@ -76,8 +76,12 @@ class KeyboardViewController: UIInputViewController {
     }
     
     
+    @objc func inputCharacter(sender: UIButton) {
+        
+    }
     
-    @objc func handleInput(/*sender: UIButton*/){
+    
+    func handleInput(/*sender: UIButton*/){
         let proxy = self.textDocumentProxy
         
        // proxy.insertText(sender.title(for: .normal) ?? "")
@@ -117,7 +121,6 @@ class KeyboardViewController: UIInputViewController {
     }
     
 
-    
    
 }
 
