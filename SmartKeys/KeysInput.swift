@@ -45,46 +45,6 @@ enum KeysInput: String, CaseIterable {
     }
 }
 
-enum UpperCase: String, CaseIterable {
-    case A =  "∀"
-    case B =  "𐐒"
-    case C =  "Ɔ"
-    case D =  "ᗡ"
-    case E =  "Ǝ"
-    case F =  "Ⅎ"
-    case G =  "⅁"
-    case H =  "H"
-    case I =  "I"
-    case J =  "ꓩ"
-    case K =  "ꓘ"
-    case L =  "˥"
-    case M =  "W"
-    case N =  "N"
-    case O =  "O"
-    case P =  "Ԁ"
-    case Q =  "Q"
-    case R =  "ᴚ"
-    case S =  "S"
-    case T =  "┴"
-    case U =  "ꓵ"
-    case V =  "Λ"
-    case W =  "M"
-    case X =  "X"
-    case Y =  "⅄"
-    case Z =  "Z"
-    //    case 0 =  "0"
-    //    case 1 =  "Ɩ"
-    //    case 2 =  "ᄅ"
-    //    case 3 =  "Ɛ"
-    //    case 4 =  "ㄣ"
-    //    case 5 =  "ϛ"
-    //    case 6 =  "9"
-    //    case 7 =  "ㄥ"
-    //    case 8 =  "8"
-    //    case 9 =  "6"
-    
-    
-}
 
 var MainDictionary: [Character : String] = [
         "a": "ɐ",
@@ -119,7 +79,7 @@ var MainDictionary: [Character : String] = [
         "D": "ᗡ",
         "E": "Ǝ",
         "F": "Ⅎ",
-        "G": "פ",
+        "G": "⅁",
         "H": "H",
         "I": "I",
         "J": "ſ",
@@ -129,7 +89,7 @@ var MainDictionary: [Character : String] = [
         "N": "N",
         "O": "O",
         "P": "Ԁ",
-        "Q": "Ό",
+        "Q": "ტ",
         "R": "ᴚ",
         "S": "S",
         "T": "⊥",
@@ -141,10 +101,10 @@ var MainDictionary: [Character : String] = [
         "Z": "Z",
         "0": "0",
         "1": "Ɩ",
-        "2": "ᄅ",
+        "2": "ᘔ",
         "3": "Ɛ",
-        "4": "ㄣ",
-        "5": "ϛ",
+        "4": "߈",
+        "5": "ဌ",
         "6": "9",
         "7": "ㄥ",
         "8": "8",

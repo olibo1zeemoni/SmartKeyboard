@@ -8,15 +8,36 @@
 import SwiftUI
 
 struct MyCustomToolbar: View {
+    @State var mirrorAction: () -> Void
+    @State var resetAction: () -> Void
 
     var body: some View {
-        VStack {
-            Button("Button") {
+        HStack(alignment: .center, spacing: 7) {
+            Button(action: resetAction) {
+                Spacer()
+                Text("Reset")
+                Spacer()
             }
-            Text("Hello, World!")
+//            .frame(maxWidth: .infinity, alignment: .leading)
+            .buttonStyle(.borderedProminent)
+            Divider()
+            Button(action: mirrorAction) {
+                Spacer()
+                Text("Mirror")
+                Spacer()
+            }
+//            .frame(maxWidth: .infinity, alignment: .trailing)
+
+            .tint(.purple)
+            .buttonStyle(.borderedProminent)
+
         }
-        .background(.red)
+        .frame(height: 44)
+        .padding(.horizontal)
+        .background(.clear)
     }
 }
 
-
+#Preview {
+    MyCustomToolbar(mirrorAction: { }, resetAction: { })
+}

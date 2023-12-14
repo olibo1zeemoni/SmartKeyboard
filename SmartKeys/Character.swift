@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct Char {
+struct Char: Hashable {
     var name: String
     var type: ButtonType
     var isAphanumeric: Bool

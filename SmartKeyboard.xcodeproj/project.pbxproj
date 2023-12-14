@@ -11,7 +11,18 @@
 		F51C73302B1E3BD900C033CC /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C732E2B1E39AA00C033CC /* ButtonType.swift */; };
 		F51C73322B1EC9DC00C033CC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C73312B1EC9DC00C033CC /* Character.swift */; };
 		F51C73332B1EC9DC00C033CC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51C73312B1EC9DC00C033CC /* Character.swift */; };
-		F5E154242B1702C60053571C /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E154232B1702C60053571C /* KeyboardController.swift */; };
+		F552005E2B28709E006B264D /* TextInputProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F552005D2B28709E006B264D /* TextInputProxy.swift */; };
+		F552005F2B28709E006B264D /* TextInputProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F552005D2B28709E006B264D /* TextInputProxy.swift */; };
+		F55200602B287969006B264D /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E154232B1702C60053571C /* KeyboardController.swift */; };
+		F55200612B28796A006B264D /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E154232B1702C60053571C /* KeyboardController.swift */; };
+		F5E536B52B1F9434000849E4 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536B42B1F9434000849E4 /* KeyboardAction.swift */; };
+		F5E536B62B1F9434000849E4 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536B42B1F9434000849E4 /* KeyboardAction.swift */; };
+		F5E536B92B1F97AE000849E4 /* String+Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536B82B1F97AE000849E4 /* String+Characters.swift */; };
+		F5E536BA2B1F97AE000849E4 /* String+Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536B82B1F97AE000849E4 /* String+Characters.swift */; };
+		F5E536BC2B1F9922000849E4 /* Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536BB2B1F9922000849E4 /* Gestures.swift */; };
+		F5E536BD2B1F9922000849E4 /* Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536BB2B1F9922000849E4 /* Gestures.swift */; };
+		F5E536C42B1F9C5B000849E4 /* KeyboardContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536C32B1F9C5B000849E4 /* KeyboardContext.swift */; };
+		F5E536C52B1F9C5B000849E4 /* KeyboardContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536C32B1F9C5B000849E4 /* KeyboardContext.swift */; };
 		F5F253AB2B1060F80088932E /* SmartKeyboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F253AA2B1060F80088932E /* SmartKeyboardApp.swift */; };
 		F5F253AD2B1060F80088932E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F253AC2B1060F80088932E /* ContentView.swift */; };
 		F5F253B22B1060FA0088932E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5F253B12B1060FA0088932E /* Preview Assets.xcassets */; };
@@ -60,7 +71,12 @@
 /* Begin PBXFileReference section */
 		F51C732E2B1E39AA00C033CC /* ButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 		F51C73312B1EC9DC00C033CC /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		F552005D2B28709E006B264D /* TextInputProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputProxy.swift; sourceTree = "<group>"; };
 		F5E154232B1702C60053571C /* KeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
+		F5E536B42B1F9434000849E4 /* KeyboardAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAction.swift; sourceTree = "<group>"; };
+		F5E536B82B1F97AE000849E4 /* String+Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Characters.swift"; sourceTree = "<group>"; };
+		F5E536BB2B1F9922000849E4 /* Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gestures.swift; sourceTree = "<group>"; };
+		F5E536C32B1F9C5B000849E4 /* KeyboardContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardContext.swift; sourceTree = "<group>"; };
 		F5F253A72B1060F80088932E /* SmartKeyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartKeyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F253AA2B1060F80088932E /* SmartKeyboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartKeyboardApp.swift; sourceTree = "<group>"; };
 		F5F253AC2B1060F80088932E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +116,7 @@
 			children = (
 				F5F253A92B1060F80088932E /* SmartKeyboard */,
 				F5F253BD2B1061D60088932E /* SmartKeys */,
+				F5E154232B1702C60053571C /* KeyboardController.swift */,
 				F5F253A82B1060F80088932E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,15 +153,19 @@
 			isa = PBXGroup;
 			children = (
 				F5F253BE2B1061D60088932E /* KeyboardViewController.swift */,
+				F5E536B42B1F9434000849E4 /* KeyboardAction.swift */,
+				F552005D2B28709E006B264D /* TextInputProxy.swift */,
+				F5E536BB2B1F9922000849E4 /* Gestures.swift */,
+				F5E536B82B1F97AE000849E4 /* String+Characters.swift */,
 				F5F253FB2B15B9CB0088932E /* KeyboardView.swift */,
 				F51C73312B1EC9DC00C033CC /* Character.swift */,
-				F51C732E2B1E39AA00C033CC /* ButtonType.swift */,
 				F5F253F72B15B0850088932E /* ButtonView.swift */,
+				F51C732E2B1E39AA00C033CC /* ButtonType.swift */,
+				F5E536C32B1F9C5B000849E4 /* KeyboardContext.swift */,
 				F5F254032B15E3BB0088932E /* DemoView.swift */,
 				F5F253CB2B10684B0088932E /* MyCustomToolbar.swift */,
 				F5F253E02B1313CC0088932E /* KeysInput.swift */,
 				F5F254092B16484A0088932E /* AnyLayoutExample.swift */,
-				F5E154232B1702C60053571C /* KeyboardController.swift */,
 				F5F253C02B1061D60088932E /* Info.plist */,
 			);
 			path = SmartKeys;
@@ -260,11 +281,17 @@
 				F5F253AB2B1060F80088932E /* SmartKeyboardApp.swift in Sources */,
 				F5F253F92B15B0AD0088932E /* ButtonView.swift in Sources */,
 				F5F2540A2B16484A0088932E /* AnyLayoutExample.swift in Sources */,
+				F552005E2B28709E006B264D /* TextInputProxy.swift in Sources */,
 				F5F253FC2B15B9CB0088932E /* KeyboardView.swift in Sources */,
 				F5F253E22B1473D10088932E /* KeysInput.swift in Sources */,
+				F55200602B287969006B264D /* KeyboardController.swift in Sources */,
 				F51C73322B1EC9DC00C033CC /* Character.swift in Sources */,
+				F5E536BC2B1F9922000849E4 /* Gestures.swift in Sources */,
+				F5E536B52B1F9434000849E4 /* KeyboardAction.swift in Sources */,
 				F5F253CD2B10689E0088932E /* MyCustomToolbar.swift in Sources */,
 				F5F254042B15E3BB0088932E /* DemoView.swift in Sources */,
+				F5E536B92B1F97AE000849E4 /* String+Characters.swift in Sources */,
+				F5E536C42B1F9C5B000849E4 /* KeyboardContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,15 +299,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5E154242B1702C60053571C /* KeyboardController.swift in Sources */,
+				F552005F2B28709E006B264D /* TextInputProxy.swift in Sources */,
 				F51C732F2B1E39AA00C033CC /* ButtonType.swift in Sources */,
 				F5F253E12B1313CC0088932E /* KeysInput.swift in Sources */,
 				F5F254052B15E3BB0088932E /* DemoView.swift in Sources */,
 				F5F253CC2B10684B0088932E /* MyCustomToolbar.swift in Sources */,
 				F5F253F82B15B0850088932E /* ButtonView.swift in Sources */,
 				F5F253FD2B15B9CB0088932E /* KeyboardView.swift in Sources */,
+				F55200612B28796A006B264D /* KeyboardController.swift in Sources */,
 				F51C73332B1EC9DC00C033CC /* Character.swift in Sources */,
+				F5E536BA2B1F97AE000849E4 /* String+Characters.swift in Sources */,
+				F5E536B62B1F9434000849E4 /* KeyboardAction.swift in Sources */,
+				F5E536BD2B1F9922000849E4 /* Gestures.swift in Sources */,
 				F5F2540B2B16484A0088932E /* AnyLayoutExample.swift in Sources */,
+				F5E536C52B1F9C5B000849E4 /* KeyboardContext.swift in Sources */,
 				F5F253BF2B1061D60088932E /* KeyboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

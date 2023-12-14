@@ -8,7 +8,39 @@
 import UIKit
 import SwiftUI
 
-class KeyboardViewController: UIInputViewController {
+class KeyboardViewController: UIInputViewController, KeyboardController {
+    func adjustTextPosition(by characterOffset: Int) {
+        
+    }
+    
+    func deleteBackward() {
+       textDocumentProxy.deleteBackward()
+    }
+    
+    func deleteBackward(times: Int) {
+        
+    }
+    
+    func insertText(_ text: String) {
+        textDocumentProxy.insertText(text)
+    }
+    
+    func performAutocomplete() {
+        
+    }
+    
+    func performDictation() {
+        
+    }
+    
+    func selectNextLocale() {
+        
+    }
+    
+    func openUrl(_ url: URL?) {
+        
+    }
+    
     
     
     override func updateViewConstraints() {
@@ -20,28 +52,40 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-       /*
-        let hostingController = UIHostingController(rootView: swiftUIView)
-        //hostingController.sizingOptions = .preferredContentSize
+       
+        let hostingController = UIHostingController(rootView: KeyboardView(showNextButton: self.needsInputModeSwitchKey, action: { [weak self] char in
+            self?.insertText(char)
+        }, nextKeyBoardAction: advanceToNextInputMode))
+        hostingController.sizingOptions = .preferredContentSize
         self.addChild(hostingController)
 
         
         view.addSubview(hostingController.view)
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            //hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
             //hostingController.view.bottomAnchor.constraint(equalTo: nextKeyboardButton.topAnchor),
-            //hostingController.view.topAnchor.constraint(equalTo: view.topAnchor) ,
+            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor) ,
             hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
         
-//        hostingController.didMove(toParent: self) */
-        self.inputView = MyInputView(frame: .zero, inputViewStyle: .default, action: { self.handleInput() }, nextKeyboardAction: advanceToNextInputMode, showNextButton:  !self.needsInputModeSwitchKey)
+        hostingController.didMove(toParent: self)
+//        self.inputView = MyInputView(frame: .zero, inputViewStyle: .default, action: { self.handleInput() }, nextKeyboardAction: advanceToNextInputMode, showNextButton:  !self.needsInputModeSwitchKey)
 
         
+    }
+    
+    var originalTextDocumentProxy: UITextDocumentProxy {
+        super.textDocumentProxy
+    }
+    
+    var textInputProxy: TextInputProxy?
+    
+    override var textDocumentProxy: UITextDocumentProxy {
+        textInputProxy ?? originalTextDocumentProxy
     }
     
     func newClosure() {
@@ -76,9 +120,6 @@ class KeyboardViewController: UIInputViewController {
     }
     
     
-    @objc func inputCharacter(sender: UIButton) {
-        
-    }
     
     
     func handleInput(/*sender: UIButton*/){
@@ -148,9 +189,9 @@ class MyInputView: UIInputView {
         // Call the super init method
         
         
-        super.init(frame: frame, inputViewStyle: inputViewStyle )
+        super.init(frame: frame, inputViewStyle: inputViewStyle)
         // Add any subviews or customizations you want
-        let swiftUIView = KeyboardView(showNextButton: showNextButton, action: { action() }, nextKeyBoardAction: nextKeyboardAction)
+        let swiftUIView = KeyboardView(showNextButton: showNextButton, action: { _ in action() }, nextKeyBoardAction: nextKeyboardAction)
         //self.action = action
         let hostingController = UIHostingController(rootView: swiftUIView)
         //hostingController.sizingOptions = .preferredContentSize

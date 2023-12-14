@@ -16,7 +16,7 @@ struct KeyboardView: View {
     ]
     
     @State var showNextButton: Bool = false
-    var action: () -> Void
+    @State var action: (String) -> Void
     var nextKeyBoardAction: () -> Void
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
@@ -27,109 +27,109 @@ struct KeyboardView: View {
     var body: some View {
 
         
-       // VStack {
-                VStack(alignment: .center, spacing: 7) {
-                    Spacer()
-                    Group {
-                        HStack(alignment: .center, spacing: 5) {
-                            
-                            ForEach(rows[0], id: \.self) { column in
-                                ButtonView(character: Char(name: column, type: .alphabet, isAphanumeric: true), action: action)
-                            }
-                        }
-                        HStack(alignment: .center, spacing: 5) {
-                            Spacer(minLength: 12)
-                            ForEach(rows[1], id: \.self) { column in
-                                ButtonView(character: Char(name: column, type: .alphabet, isAphanumeric: true), action: action)
-                            }
-                            Spacer(minLength: 12)
-                            
-                        }
-                        HStack(alignment: .center, spacing: 5) {
-                            Button(action: action) {
-                                ZStack {
-                                    Color.buttonBackground
-                                    Image(systemName: "shift.fill")
-                                        .font(.system(size: 18, weight: .medium, design: .rounded))
-                                }
-                                .frame(width: verticalSizeClass == .regular ? 44 : 86,
-                                       height: verticalSizeClass == .regular ? 44 : 30)
-                                .foregroundColor(Color.foreGround)
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                                
-                            }
-                            Spacer()
-                            ForEach(rows[2], id: \.self) { column in
-                                ButtonView(character: Char(name: column, type: .alphabet, isAphanumeric: true), action: action)
-                            }
-                            Spacer()
-                            Button(action: action) {
-                                ZStack {
-                                    Color.buttonBackground
-                                    Image(systemName: "delete.left")
-                                        .font(.system(size: 18, weight: .medium, design: .rounded))
-                                }
-                                .frame(width: verticalSizeClass == .regular ? 44 : 86,
-                                       height: verticalSizeClass == .regular ? 44 : 30)
-                                .foregroundColor(Color.foreGround)
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
-                                
-                            }
-                        }
+        VStack {
+            MyCustomToolbar(mirrorAction: {}, resetAction: {})
+            VStack(alignment: .center, spacing: 7) {
+                        //Spacer()
                         Group {
-                            GeometryReader { proxy in
-                                HStackLayout(alignment: .center, spacing: 5){
-                                    Button(action: action) {
-                                        ZStack {
-                                            Color.buttonBackground
-                                            Image(systemName: "textformat.123")
-                                        }
-                                        .frame(maxWidth: proxy.size.width * 0.12)
-                                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                            HStack(alignment: .center, spacing: 5) {
+                                
+                                ForEach(inputKeys[0], id: \.name) { column in
+                                    ButtonView(character: Char(name: column.name, type: .alphabet, isAphanumeric: true), action: action)
+                                }
+                            }
+                            HStack(alignment: .center, spacing: 5) {
+                                Spacer(minLength: 12)
+                                ForEach(inputKeys[1], id: \.name) { column in
+                                    ButtonView(character: Char(name: column.name, type: .alphabet, isAphanumeric: true), action: action)
+                                }
+                                Spacer(minLength: 12)
+                                
+                            }
+                            HStack(alignment: .center, spacing: 5) {
+                                Button(action: { }) {
+                                    ZStack {
+                                        Color.buttonBackground
+                                        Image(systemName: "shift.fill")
+                                            .font(.system(size: 18, weight: .medium, design: .rounded))
                                     }
-                                    if showNextButton {
-                                        Button(action: {nextKeyBoardAction()}) {
+                                    .frame(width: verticalSizeClass == .regular ? 44 : 86,
+                                           height: verticalSizeClass == .regular ? 44 : 30)
+                                    .foregroundColor(Color.foreGround)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    
+                                }
+                                Spacer()
+                                ForEach(inputKeys[2], id: \.name) { column in
+                                    ButtonView(character: Char(name: column.name, type: .alphabet, isAphanumeric: true), action: action)
+                                }
+                                Spacer()
+                                Button(action: { }) {
+                                    ZStack {
+                                        Color.buttonBackground
+                                        Image(systemName: "delete.left")
+                                            .font(.system(size: 18, weight: .medium, design: .rounded))
+                                    }
+                                    .frame(width: verticalSizeClass == .regular ? 44 : 86,
+                                           height: verticalSizeClass == .regular ? 44 : 30)
+                                    .foregroundColor(Color.foreGround)
+                                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    
+                                }
+                            }
+                            Group {
+                                GeometryReader { proxy in
+                                    HStackLayout(alignment: .center, spacing: 5){
+                                        Button(action: { }) {
                                             ZStack {
                                                 Color.buttonBackground
-                                                Image(systemName: "globe")
+                                                Image(systemName: "textformat.123")
                                             }
                                             .frame(maxWidth: proxy.size.width * 0.12)
                                             .clipShape(RoundedRectangle(cornerRadius: 5))
                                         }
-                                    }
-                                    Button(action: action) {
-                                        ZStack {
-                                            Color.buttonBackground
-                                            Text("space")
+                                        if showNextButton {
+                                            Button(action: {nextKeyBoardAction()}) {
+                                                ZStack {
+                                                    Color.buttonBackground
+                                                    Image(systemName: "globe")
+                                                }
+                                                .frame(maxWidth: proxy.size.width * 0.12)
+                                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                            }
                                         }
-                                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                                    }
-                                    Button(action: action) {
-                                        ZStack {
-                                            Color.buttonBackground
-                                            Text("return")
+                                        Button(action: { }) {
+                                            ZStack {
+                                                Color.buttonBackground
+                                                Text("space")
+                                            }
+                                            .clipShape(RoundedRectangle(cornerRadius: 5))
                                         }
-                                        .frame(maxWidth: proxy.size.width * 0.2)
-                                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                                        Button(action: { }) {
+                                            ZStack {
+                                                Color.buttonBackground
+                                                Text("return")
+                                            }
+                                            .frame(maxWidth: proxy.size.width * 0.2)
+                                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                                        }
                                     }
                                 }
+                                .font(.system(size: 16, weight: .regular, design: .rounded))
+                                .foregroundStyle(Color.foreGround)
+                                .frame(maxWidth: .infinity, minHeight: 30)
                             }
-                            .font(.system(size: 16, weight: .regular, design: .rounded))
-                            .foregroundStyle(Color.foreGround)
-                            .frame(maxWidth: .infinity, minHeight: 30)
                         }
+                        .frame(height: verticalSizeClass == .regular ? 44 : 30)
+                        Spacer()
                     }
-                    .frame(height: verticalSizeClass == .regular ? 44 : 30)
-                    Spacer()
-                }
-                .font(.system(size: 25, weight: .regular, design: .rounded))
-                .padding(.horizontal, 5)
-                .background(.keyboardBG)
-                .frame(height: verticalSizeClass == .regular ? 210 : 150, alignment: .bottom)
-                .safeAreaInset(edge: .top) {
-                        Color.green
-                            .frame(height: 2)
-                    }
+                    .font(.system(size: 25, weight: .regular, design: .rounded))
+                    .padding(.horizontal, 5)
+                    .frame(height: verticalSizeClass == .regular ? 210 : 150, alignment: .bottom)
+        }
+        .background(.keyboardBG)
+        .safeAreaInset(edge: .top) { Color.green.frame(height: 2) }
+
                
     }
     
@@ -142,6 +142,7 @@ struct KeyboardView: View {
                 temp.append(char)
             }
             array.append(temp)
+            temp.removeAll()
         }
         return array
     }
@@ -149,7 +150,7 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    KeyboardView(action: { }, nextKeyBoardAction: { })
+    KeyboardView(action: { _ in }, nextKeyBoardAction: { })
 }
 
 

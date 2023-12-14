@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ButtonView: View {
     let character: Char
-    let action: () -> Void
+    let action: (String) -> Void
     //@Environment(\.verticalSizeClass) var verticalSizeClass
 
     
     var body: some View {
-        Button(action: action)
+        Button(action: { action(character.name)} )
         {
             ZStack{
                 RoundedRectangle(cornerRadius: 5)
@@ -29,5 +29,5 @@ struct ButtonView: View {
 }
 
 #Preview {
-    ButtonView(character: Char(name: "K", type: .alphabet, isAphanumeric: true), action: { })
+    ButtonView(character: Char(name: "K", type: .alphabet, isAphanumeric: true), action: { _ in })
 }
