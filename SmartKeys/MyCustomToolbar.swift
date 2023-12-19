@@ -18,7 +18,7 @@ struct MyCustomToolbar: View {
                 Text("Reset")
                 Spacer()
             }
-//            .frame(maxWidth: .infinity, alignment: .leading)
+            .tint(Color(#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)))
             .buttonStyle(.borderedProminent)
             Divider()
             Button(action: mirrorAction) {
@@ -26,9 +26,7 @@ struct MyCustomToolbar: View {
                 Text("Mirror")
                 Spacer()
             }
-//            .frame(maxWidth: .infinity, alignment: .trailing)
-
-            .tint(.purple)
+            .tint(Color(#colorLiteral(red: 0, green: 0.7656916718, blue: 0, alpha: 1)))
             .buttonStyle(.borderedProminent)
 
         }

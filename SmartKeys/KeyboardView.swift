@@ -15,10 +15,15 @@ struct KeyboardView: View {
         ["z", "x", "c", "v", "b", "n", "m"]
     ]
     
+    @State var switchCase: Bool = false
     @State var showNextButton: Bool = false
     @State var action: (String) -> Void
     var nextKeyBoardAction: () -> Void
+    @State var mirrorAction: () -> Void
+    @State var resetAction: () -> Void
+    
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    
     
     
     
@@ -27,8 +32,8 @@ struct KeyboardView: View {
     var body: some View {
 
         
-        VStack {
-            MyCustomToolbar(mirrorAction: {}, resetAction: {})
+        VStack(spacing: 0) {
+            MyCustomToolbar(mirrorAction: mirrorAction, resetAction: resetAction)
             VStack(alignment: .center, spacing: 7) {
                         //Spacer()
                         Group {
@@ -47,7 +52,7 @@ struct KeyboardView: View {
                                 
                             }
                             HStack(alignment: .center, spacing: 5) {
-                                Button(action: { }) {
+                                Button(action: { switchCase.toggle()}) {
                                     ZStack {
                                         Color.buttonBackground
                                         Image(systemName: "shift.fill")
@@ -121,14 +126,14 @@ struct KeyboardView: View {
                             }
                         }
                         .frame(height: verticalSizeClass == .regular ? 44 : 30)
-                        Spacer()
+                      //  Spacer()
                     }
                     .font(.system(size: 25, weight: .regular, design: .rounded))
                     .padding(.horizontal, 5)
                     .frame(height: verticalSizeClass == .regular ? 210 : 150, alignment: .bottom)
         }
         .background(.keyboardBG)
-        .safeAreaInset(edge: .top) { Color.green.frame(height: 2) }
+        //.safeAreaInset(edge: .top) { Color.green.frame(height: 2) }
 
                
     }
@@ -138,7 +143,7 @@ struct KeyboardView: View {
         var temp: [Char] = []
         for row in rows {
             for column in row {
-                let char = Char(name: column, type: .alphabet, isAphanumeric: false)
+                let char = Char(name: switchCase ? column : column.uppercased(), type: .alphabet, isAphanumeric: false)
                 temp.append(char)
             }
             array.append(temp)
@@ -150,7 +155,7 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    KeyboardView(action: { _ in }, nextKeyBoardAction: { })
+    KeyboardView(action: { _ in }, nextKeyBoardAction: { }, mirrorAction: {}, resetAction: {})
 }
 
 
