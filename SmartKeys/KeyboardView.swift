@@ -21,6 +21,9 @@ struct KeyboardView: View {
     var nextKeyBoardAction: () -> Void
     @State var mirrorAction: () -> Void
     @State var resetAction: () -> Void
+    @State var spaceAction: () -> Void
+    @State var deleteAction: () -> Void
+    @State var returnAction: () -> Void
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
@@ -55,7 +58,7 @@ struct KeyboardView: View {
                                 Button(action: { switchCase.toggle()}) {
                                     ZStack {
                                         Color.buttonBackground
-                                        Image(systemName: "shift.fill")
+                                        Image(systemName: switchCase ? "shift" : "shift.fill")
                                             .font(.system(size: 18, weight: .medium, design: .rounded))
                                     }
                                     .frame(width: verticalSizeClass == .regular ? 44 : 86,
@@ -69,7 +72,7 @@ struct KeyboardView: View {
                                     ButtonView(character: Char(name: column.name, type: .alphabet, isAphanumeric: true), action: action)
                                 }
                                 Spacer()
-                                Button(action: { }) {
+                                Button(action: deleteAction) {
                                     ZStack {
                                         Color.buttonBackground
                                         Image(systemName: "delete.left")
@@ -103,14 +106,14 @@ struct KeyboardView: View {
                                                 .clipShape(RoundedRectangle(cornerRadius: 5))
                                             }
                                         }
-                                        Button(action: { }) {
+                                        Button(action: spaceAction) {
                                             ZStack {
                                                 Color.buttonBackground
                                                 Text("space")
                                             }
                                             .clipShape(RoundedRectangle(cornerRadius: 5))
                                         }
-                                        Button(action: { }) {
+                                        Button(action: returnAction) {
                                             ZStack {
                                                 Color.buttonBackground
                                                 Text("return")
@@ -155,14 +158,14 @@ struct KeyboardView: View {
 }
 
 #Preview {
-    KeyboardView(action: { _ in }, nextKeyBoardAction: { }, mirrorAction: {}, resetAction: {})
+    KeyboardView(action: { _ in }, nextKeyBoardAction: { }, mirrorAction: {}, resetAction: {}, spaceAction: {}, deleteAction: {}, returnAction: {})
 }
 
 
-class KeyboardController1: ObservableObject {
-    weak var viewController: UIInputViewController?
-    
-    func switchToNextKeyboard() {
-        viewController?.advanceToNextInputMode()
-    }
-}
+//class KeyboardController1: ObservableObject {
+//    weak var viewController: UIInputViewController?
+//    
+//    func switchToNextKeyboard() {
+//        viewController?.advanceToNextInputMode()
+//    }
+//}

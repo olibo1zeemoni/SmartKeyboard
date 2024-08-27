@@ -162,10 +162,10 @@
 				F5F253F72B15B0850088932E /* ButtonView.swift */,
 				F51C732E2B1E39AA00C033CC /* ButtonType.swift */,
 				F5E536C32B1F9C5B000849E4 /* KeyboardContext.swift */,
-				F5F254032B15E3BB0088932E /* DemoView.swift */,
 				F5F253CB2B10684B0088932E /* MyCustomToolbar.swift */,
 				F5F253E02B1313CC0088932E /* KeysInput.swift */,
 				F5F254092B16484A0088932E /* AnyLayoutExample.swift */,
+				F5F254032B15E3BB0088932E /* DemoView.swift */,
 				F5F253C02B1061D60088932E /* Info.plist */,
 			);
 			path = SmartKeys;

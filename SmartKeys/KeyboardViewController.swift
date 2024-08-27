@@ -44,15 +44,24 @@ class KeyboardViewController: UIInputViewController, KeyboardController {
         
     }
     
+    func returnAction(){
+        textDocumentProxy.insertText("\u{a}")
+    }
+    
     func mirrorText() {
         previousText = textDocumentProxy.documentContextBeforeInput ?? ""
 
         guard textDocumentProxy.hasText else { return }
-        var text = "hello"
+        
+        var textBefore = textDocumentProxy.documentContextBeforeInput ?? ""
+        var textAfter = textDocumentProxy.documentContextAfterInput ?? ""
+        
+        
         while let _ = textDocumentProxy.documentContextBeforeInput {
                 textDocumentProxy.deleteBackward()
             }
-        textDocumentProxy.insertText(text)
+        
+        textDocumentProxy.insertText(flipText(textBefore + textAfter))
     }
     
     func reset() {
@@ -74,7 +83,7 @@ class KeyboardViewController: UIInputViewController, KeyboardController {
        
         let hostingController = UIHostingController(rootView: KeyboardView(showNextButton: self.needsInputModeSwitchKey, action: { [weak self] char in
             self?.insertText(char)
-        }, nextKeyBoardAction: advanceToNextInputMode, mirrorAction: mirrorText, resetAction: reset))
+        }, nextKeyBoardAction: advanceToNextInputMode, mirrorAction: mirrorText, resetAction: reset, spaceAction: { self.insertText(" ")}, deleteAction: deleteBackward, returnAction: returnAction))
         hostingController.sizingOptions = .preferredContentSize
         self.addChild(hostingController)
 
@@ -205,44 +214,3 @@ class KeyboardViewController: UIInputViewController, KeyboardController {
 
 
 
-//class MyInputView: UIInputView {
-//    // Override the init method
-//    
-//    init(frame: CGRect, inputViewStyle: UIInputView.Style, action: @escaping () -> Void, nextKeyboardAction: @escaping () -> Void, showNextButton: Bool) {
-//        // Call the super init method
-//        
-//        
-//        super.init(frame: frame, inputViewStyle: inputViewStyle)
-//        // Add any subviews or customizations you want
-//        let swiftUIView = KeyboardView(showNextButton: showNextButton, action: { _ in action() }, nextKeyBoardAction: nextKeyboardAction)
-//        //self.action = action
-//        let hostingController = UIHostingController(rootView: swiftUIView)
-//        //hostingController.sizingOptions = .preferredContentSize
-//        
-//        addSubview(hostingController.view)
-//
-//        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//
-//            hostingController.view.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            hostingController.view.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            hostingController.view.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            hostingController.view.trailingAnchor.constraint(equalTo: trailingAnchor),
-//        ])
-//        
-//    }
-//    
-//    // Required init method
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    // Define an action for the button
-//    @objc func buttonTapped() {
-//        // Get the text document proxy from the input view controller
-//        
-//        guard let proxy = inputViewController?.textDocumentProxy else { return }
-//        // Insert some text at the insertion point
-//        proxy.insertText("Hello, world!")
-//    }
-//}
