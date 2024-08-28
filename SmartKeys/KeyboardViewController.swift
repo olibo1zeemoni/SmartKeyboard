@@ -53,8 +53,8 @@ class KeyboardViewController: UIInputViewController, KeyboardController {
 
         guard textDocumentProxy.hasText else { return }
         
-        var textBefore = textDocumentProxy.documentContextBeforeInput ?? ""
-        var textAfter = textDocumentProxy.documentContextAfterInput ?? ""
+        let textBefore = textDocumentProxy.documentContextBeforeInput ?? ""
+        let textAfter = textDocumentProxy.documentContextAfterInput ?? ""
         
         
         while let _ = textDocumentProxy.documentContextBeforeInput {

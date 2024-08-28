@@ -93,7 +93,7 @@ var MainDictionary: [Character : String] = [
         "R": "ᴚ",
         "S": "S",
         "T": "⊥",
-        "U": "∩",
+        "U": "Ո",
         "V": "Λ",
         "W": "M",
         "X": "X",
