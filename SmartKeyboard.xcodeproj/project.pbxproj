@@ -15,6 +15,8 @@
 		F552005F2B28709E006B264D /* TextInputProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F552005D2B28709E006B264D /* TextInputProxy.swift */; };
 		F55200602B287969006B264D /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E154232B1702C60053571C /* KeyboardController.swift */; };
 		F55200612B28796A006B264D /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E154232B1702C60053571C /* KeyboardController.swift */; };
+		F595F7732D8E7010009609E2 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = F595F7722D8E7010009609E2 /* Inject */; };
+		F595F7752D8E780C009609E2 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = F595F7742D8E780C009609E2 /* Inject */; };
 		F5E536B52B1F9434000849E4 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536B42B1F9434000849E4 /* KeyboardAction.swift */; };
 		F5E536B62B1F9434000849E4 /* KeyboardAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536B42B1F9434000849E4 /* KeyboardAction.swift */; };
 		F5E536B92B1F97AE000849E4 /* String+Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E536B82B1F97AE000849E4 /* String+Characters.swift */; };
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F595F7732D8E7010009609E2 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F595F7752D8E780C009609E2 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +211,7 @@
 			);
 			name = SmartKeys;
 			packageProductDependencies = (
+				F595F7742D8E780C009609E2 /* Inject */,
 			);
 			productName = SmartKeys;
 			productReference = F5F253BC2B1061D60088932E /* SmartKeys.appex */;
@@ -240,6 +245,7 @@
 			);
 			mainGroup = F5F2539E2B1060F80088932E;
 			packageReferences = (
+				F595F7712D8E6DA8009609E2 /* XCRemoteSwiftPackageReference "Inject" */,
 			);
 			productRefGroup = F5F253A82B1060F80088932E /* Products */;
 			projectDirPath = "";
@@ -380,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -437,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -469,6 +475,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-Xlinker",
+					"-interposable",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeemoni.SmartKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -523,6 +533,10 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-Xlinker",
+					"-interposable",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeemoni.SmartKeyboard.SmartKeys;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -588,6 +602,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F595F7712D8E6DA8009609E2 /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F595F7722D8E7010009609E2 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F595F7712D8E6DA8009609E2 /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
+		};
+		F595F7742D8E780C009609E2 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F595F7712D8E6DA8009609E2 /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F5F2539F2B1060F80088932E /* Project object */;
 }
