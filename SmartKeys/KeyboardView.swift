@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import Inject
 
 struct KeyboardView: View {
     let rows = [
@@ -26,6 +27,8 @@ struct KeyboardView: View {
     @State var returnAction: () -> Void
     
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @ObserveInjection var inject
+
     
     
     
@@ -137,7 +140,7 @@ struct KeyboardView: View {
         }
         .background(.keyboardBG)
         //.safeAreaInset(edge: .top) { Color.green.frame(height: 2) }
-
+        .enableInjection()
                
     }
     

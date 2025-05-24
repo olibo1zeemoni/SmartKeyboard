@@ -8,8 +8,15 @@
 import UIKit
 import SwiftUI
 import Combine
+#if DEBUG
+import Inject
+#endif 
 
 class KeyboardViewController: UIInputViewController, KeyboardController {
+    #if DEBUG
+    @ObserveInjection var inject
+    #endif
+    
     var previousText = ""
     
     func adjustTextPosition(by characterOffset: Int) {
@@ -79,31 +86,54 @@ class KeyboardViewController: UIInputViewController, KeyboardController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        #if DEBUG
+        // Enable hot reloading
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("INJECTION_BUNDLE_NOTIFICATION"), object: nil, queue: nil) { [weak self] _ in
+            self?.viewDidLoad()
+        }
+        #endif
        
         let hostingController = UIHostingController(rootView: KeyboardView(showNextButton: self.needsInputModeSwitchKey, action: { [weak self] char in
             self?.insertText(char)
-        }, nextKeyBoardAction: advanceToNextInputMode, mirrorAction: mirrorText, resetAction: reset, spaceAction: { self.insertText(" ")}, deleteAction: deleteBackward, returnAction: returnAction))
+        }, nextKeyBoardAction: advanceToNextInputMode, mirrorAction: mirrorText, resetAction: reset, spaceAction: { self.insertText(" ")}, deleteAction: deleteBackward, returnAction: returnAction)
+            #if DEBUG
+            .enableInjection()
+            #endif
+        )
         hostingController.sizingOptions = .preferredContentSize
         self.addChild(hostingController)
-
+        
+        // Remove any existing subviews to avoid constraint conflicts
+        view.subviews.forEach { $0.removeFromSuperview() }
         
         view.addSubview(hostingController.view)
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Create a container view to handle the layout
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(containerView)
+        
+        // Add the hosting controller's view to the container
+        containerView.addSubview(hostingController.view)
+        
+        // Set up container constraints
         NSLayoutConstraint.activate([
-            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            //hostingController.view.bottomAnchor.constraint(equalTo: nextKeyboardButton.topAnchor),
-            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor) ,
-            hostingController.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            hostingController.view.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            hostingController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            hostingController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: view.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        // Set up hosting controller view constraints within the container
+        NSLayoutConstraint.activate([
+            hostingController.view.topAnchor.constraint(equalTo: containerView.topAnchor),
+            hostingController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            hostingController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            hostingController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
         
         hostingController.didMove(toParent: self)
-//        self.inputView = MyInputView(frame: .zero, inputViewStyle: .default, action: { self.handleInput() }, nextKeyboardAction: advanceToNextInputMode, showNextButton:  !self.needsInputModeSwitchKey)
-
-        
     }
     
     var originalTextDocumentProxy: UITextDocumentProxy {
@@ -130,7 +160,7 @@ class KeyboardViewController: UIInputViewController, KeyboardController {
     
     override func textWillChange(_ textInput: UITextInput?) {
         // The app is about to change the document's contents. Perform any preparation here.
-        let keyBoardType = textDocumentProxy.keyboardType
+        let _ = textDocumentProxy.keyboardType
 
     }
     
