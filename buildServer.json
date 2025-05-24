@@ -1,0 +1,19 @@
+{
+	"name": "xcode build server",
+	"version": "0.2",
+	"bspVersion": "2.0",
+	"languages": [
+		"c",
+		"cpp",
+		"objective-c",
+		"objective-cpp",
+		"swift"
+	],
+	"argv": [
+		"/opt/homebrew/bin/xcode-build-server"
+	],
+	"workspace": "/Users/1zeemoni/Desktop/Projects/Tests/Personal-Projects/Tests/SmartKeyboard/SmartKeyboard.xcodeproj/project.xcworkspace",
+	"build_root": "/Users/1zeemoni/Library/Developer/Xcode/DerivedData/SmartKeyboard-aosrdbuphxwkmegtgotbummruvuo",
+	"scheme": "SmartKeyboard",
+	"kind": "xcode"
+}

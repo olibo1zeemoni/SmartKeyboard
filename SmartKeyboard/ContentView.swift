@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+#if DEBUG
 import Inject
+#endif
 
 struct ContentView: View {
     @ObserveInjection var inject
